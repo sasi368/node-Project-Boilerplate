@@ -1,6 +1,6 @@
+import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-
 // import routes
 import user from "./routes/user";
 
@@ -8,7 +8,6 @@ import user from "./routes/user";
 let ConfigSetUp = require("./configs/config"),
   config = new ConfigSetUp();
 
-const express = require("express");
 const app = express();
 
 //api setup
@@ -38,6 +37,7 @@ app.get("/", (req, res) => {
 //   method:post
 //   param:name
 //   type:raw data json format
+//multer for form data
 app.use("/users", user); // for user routes
 //
 

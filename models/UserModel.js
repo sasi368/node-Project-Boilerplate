@@ -14,6 +14,21 @@ let userNameSchema = new Schema({
   },
 });
 
+let profileImgSchema = new Schema({
+  name: { type: String, required: true },
+  description: String,
+  image: {
+    type: String,
+    default: "",
+  },
+});
+
 const usersName = mongoose.model("usersName", userNameSchema, "usersName");
 
-export default usersName;
+const usersProfile = mongoose.model(
+  "usersProfile",
+  profileImgSchema,
+  "usersProfile"
+);
+
+export { usersName, usersProfile };
