@@ -130,8 +130,6 @@ const changePassword = async (req, res) => {
       reqBody.oldPassword,
       checkUser.password
     );
-
-    console.log("checkUser.passwordcheckUser.password", checkUser.password);
     if (!passwordStatus) {
       return res.json({
         status: false,
