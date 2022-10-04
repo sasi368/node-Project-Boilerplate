@@ -2,32 +2,36 @@ import express from "express";
 import {
   addUserNameValidation,
   addUserProfileImageValidate,
+  registerValidation,
+  LoginValidation,
+  changePasswordValidate,
 } from "./validations/userValidations";
-import { createUserImage, createUserName } from "../controllers/userController";
-import multer from "multer";
-import path from "path";
-
-// For file upload
-var storage = multer.diskStorage({
-  destination: "./public/Images",
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + Date.now() + path.extname(file.originalname));
-  },
-});
-var upload = multer({
-  storage: storage,
-});
-
-var upload = multer({ storage: storage });
+import {
+  createUserImage,
+  createUserName,
+  userRegister,
+  userLogin,
+  changePassword,
+} from "../controllers/userController";
+import { upload, defaultVal } from "../middlewares/multerFileUpload";
+import { verifyToken } from "../middlewares/authjwt";
 
 const router = express();
 
 router
   .route("/add-name")
-  .post(multer().none(), addUserNameValidation, createUserName);
+  .post(defaultVal, addUserNameValidation, createUserName);
 
 router
   .route("/add-profileImg")
   .post(upload.single("image"), addUserProfileImageValidate, createUserImage);
+
+router.route("/register").post(defaultVal, registerValidation, userRegister);
+
+router.route("/login").post(defaultVal, LoginValidation, userLogin);
+
+router
+  .route("/change-password")
+  .post(defaultVal, verifyToken, changePasswordValidate, changePassword);
 
 export default router;

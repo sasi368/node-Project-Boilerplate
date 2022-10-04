@@ -1,6 +1,5 @@
 // import package
 import mongoose from "mongoose";
-
 //helpers
 import { dateFormat1 } from "../helpers/dateTime";
 
@@ -23,6 +22,12 @@ let profileImgSchema = new Schema({
   },
 });
 
+let registeredUsersSchema = new Schema({
+  name: { type: String, required: true },
+  email: String,
+  password: String,
+});
+
 const usersName = mongoose.model("usersName", userNameSchema, "usersName");
 
 const usersProfile = mongoose.model(
@@ -31,4 +36,10 @@ const usersProfile = mongoose.model(
   "usersProfile"
 );
 
-export { usersName, usersProfile };
+const registeredUsers = mongoose.model(
+  "registeredUsers",
+  registeredUsersSchema,
+  "registeredUsers"
+);
+
+export { usersName, usersProfile, registeredUsers };

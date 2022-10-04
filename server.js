@@ -36,8 +36,6 @@ app.get("/", (req, res) => {
 // eg: url:http://127.0.0.1:7000/users/add-name
 //   method:post
 //   param:name
-//   type:raw data json format
-//multer for form data
 app.use("/users", user); // for user routes
 //
 

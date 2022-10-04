@@ -4,12 +4,14 @@ module.exports = function () {
       return {
         port: 7000,
         mongoDbUrl: "mongodb://localhost/sampleUserDetailsDb",
+        secret: "devsecret",
       };
 
     case "production":
       return {
         port: 5000,
         mongoDbUrl: "mongodb://localhost/sampleUserDetailsDb",
+        secret: "stagesecret",
       };
 
     default:
